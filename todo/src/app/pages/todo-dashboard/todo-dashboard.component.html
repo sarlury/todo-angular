@@ -1,1 +1,67 @@
-<p>todo-dashboard works!</p>
+<div class="container">
+    <div class="todo-list-box">
+        <div class="title">Todo</div>
+    </div>
+  
+    <form [formGroup]="todoForm">
+       
+      <!-- list todo -->
+        <div class="container-todo">
+            <ng-container *ngIf="todos.length > 0;">
+                <div class="list-of-task">
+                  <div class="title-list">
+                      List
+                  </div>
+                      <div *ngFor="let todo of todos; let i = index;">
+                              <div class="row row-task-list">
+                                  <div class="col-1">
+                                      <input type="checkbox" (click)="done(i, todo)"> 
+                                      
+                                  </div>
+                                  <div class="col-6">
+                                      {{todo}} 
+                                  </div>
+                                  <div class="col-1">
+                                      <fa-icon [icon]="faTrash" class="trash-btn" (click)="delete(i)"></fa-icon>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+          </ng-container>
+  
+  
+          <!-- input todo list -->
+          <ng-template [ngIf]="showInput">
+              <div class="input-task">
+                  <input type="text" class="form-input" formControlName="todoInput">
+                  <button type="button" class="btn btn-primary add-button" (click)="addToList()" [disabled]="!todoForm.valid">
+                    Add
+                  </button>
+              </div>
+            </ng-template>
+  
+  
+            <!-- button trigger show input task -->
+          <div *ngIf="!showInput" class="show-input" (click)="showInputButton()">
+              <div class="container-button-add">
+                  <fa-icon [icon]="faPlusSquare"></fa-icon> Add New Task
+              </div>
+            </div>
+  
+            <!-- list done -->
+            <div *ngIf="todosDone.length > 0">
+                <div class="container-list-of-done">
+                    <span class="title-list-done">Done</span>
+                <div *ngFor="let todo of todosDone">
+                 
+                  <div class="list-of-done">{{todo}}</div>
+              </div>
+              </div>
+          </div>
+  
+        
+        </div>
+    </form>
+   
+    
+  </div>
