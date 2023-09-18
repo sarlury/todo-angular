@@ -30,9 +30,7 @@ export class TodoDashboardComponent {
       this.todos.push(todoValue);
       this.todoForm.get("todoInput")?.reset();
       this.showInput = false;
-    } else {
-      
-    }
+    } 
     }
   
     showInputButton() {
